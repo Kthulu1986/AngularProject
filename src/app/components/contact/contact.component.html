@@ -1,0 +1,9 @@
+<div class = "form-container">
+    <h1>Contact us!</h1>
+    <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+        <input type="text" formControlName="name" placeholder="Tu nombre">
+        <input type="text" formControlName="email" placeholder="Tu Email">
+        <textarea formControlName = "message" placeHolder="Comentario"></textarea>
+        <button type="submit" class="btn-send">Guardar</button>
+    </form>
+</div>
