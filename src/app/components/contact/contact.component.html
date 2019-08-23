@@ -1,9 +1,39 @@
 <div class = "form-container">
-    <h1>Contact us!</h1>
+    <h1>Formulario para webiar xD</h1>
     <form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
         <input type="text" formControlName="name" placeholder="Tu nombre">
+        <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div class="container-error-message" *ngIf="name.errors.required">
+                Nombre requerido
+            </div>    
+            <div class="container-error-message" *ngIf="name.errors.minLength">
+                Se requieren minimo 5 caracteres para el nombre
+            </div>             
+        </div>
         <input type="text" formControlName="email" placeholder="Tu Email">
+
+        <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div class="container-error-message" *ngIf="email.errors.required">
+                Email requerido
+            </div>    
+            <div class="container-error-message" *ngIf="email.errors.minLength">
+                Se requieren minimo 5 caracteres para el email
+            </div>      
+            <div class="container-error-message" *ngIf="(email.dirty || email.touched) && email.invalid && email.errors.pattern">
+                Email no valido
+            </div>        
+        </div>
+
+
         <textarea formControlName = "message" placeHolder="Comentario"></textarea>
-        <button type="submit" class="btn-send">Guardar</button>
+        <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+            <div class="container-error-message" *ngIf="message.errors.required">
+                Mensaje requerido
+            </div>    
+            <div class="container-error-message" *ngIf="message.errors.minLength">
+                Se requieren minimo 5 caracteres para el mensaje
+            </div>             
+        </div>
+        <button type="submit" class="btn-send" [disabled]="!contactForm.valid">Guardar</button>
     </form>
 </div>
